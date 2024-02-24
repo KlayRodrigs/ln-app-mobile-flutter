@@ -5,15 +5,15 @@ Desafio técnico para vaga de desenvolvedor Flutter
 ## Requisitos:
 
 -Tela de login/cadastro
-    -Formulário de cadastro.
-    -A autenticação deve ser baseada em e-mail e senha.
+    <li>Formulário de cadastro</li>
+    <li>A autenticação deve ser baseada em e-mail e senha.</li>
 -Tela inicial/home (Agenda)
-    -Lista de leilões ao-vivo
-    -Listagem de próximos leilões agendados
+    <li>Lista de leilões ao-vivo</li>
+    <li>Listagem de próximos leilões agendados</li>
 -Tela de detalhes do leilão
-    -Imagem do leilão
-    -Título
-    -Telefone de contato
-    -Data/Hora
-    -Localização
+    <li>Imagem do leilão</li>
+    <li>Título</li>
+    <li>Telefone de contato</li>
+    <li>Data/Hora</li>
+    <li>Localização</li>
 -Gerar o apk ou apresentar na avaliação online.

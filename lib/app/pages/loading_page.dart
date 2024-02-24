@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:ln_app/app/pages/login_page.dart';
-import 'package:ln_app/components/poppins_text_component.dart';
+import 'package:ln_app/components/custom_text_component.dart';
+import 'package:ln_app/components/dix_version_footer_component.dart';
 import 'package:ln_app/utils/app_colors.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -14,11 +16,13 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2)).whenComplete(() {
+    Future.delayed(const Duration(seconds: 5)).whenComplete(() {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const LoginPage(),
+            builder: (context) => const LoginPage()
+                .animate()
+                .fadeIn(duration: const Duration(seconds: 2)),
           ));
     });
   }
@@ -27,10 +31,11 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
         decoration: const BoxDecoration(
             color: AppColors.black,
             image: DecorationImage(
-                opacity: 0.36,
+                opacity: 0.35,
                 image: AssetImage("assets/images/background.png"),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.linearToSrgbGamma(),
@@ -44,12 +49,14 @@ class _LoadingPageState extends State<LoadingPage> {
             Expanded(
               child: Image.asset(
                 "assets/images/logo.png",
-                width: 400,
+                width: 250,
+                height: 200,
               ),
             ),
-            const SizedBox(
+            SizedBox(
                 width: 260,
-                child: PoppinsTextComponent(
+                child: CustomTextComponent(
+                    ifTruePoppinsElseLato: true,
                     content:
                         "Leilões online para rematar seu gado com praticidade",
                     size: 16,
@@ -61,17 +68,7 @@ class _LoadingPageState extends State<LoadingPage> {
                 color: AppColors.white,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6.0),
-              child: Image.asset("assets/images/logo_dix.png"),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 30.0),
-              child: Text(
-                "V 2.0.0.1",
-                style: TextStyle(color: AppColors.white, fontSize: 10),
-              ),
-            )
+            const DixVersionFooterComponent()
           ],
         ),
       ),
