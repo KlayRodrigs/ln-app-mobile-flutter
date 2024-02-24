@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ln_app/components/custom_text_component.dart';
+import 'package:ln_app/app/components/custom_text_component.dart';
 
 class DixVersionFooterComponent extends StatelessWidget {
   const DixVersionFooterComponent({super.key});
@@ -9,7 +9,7 @@ class DixVersionFooterComponent extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 6.0),
+          padding: const EdgeInsets.only(bottom: 6.0, top: 20),
           child: Image.asset("assets/images/logo_dix.png"),
         ),
         Padding(

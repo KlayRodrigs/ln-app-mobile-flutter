@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ln_app/components/custom_text_component.dart';
-import 'package:ln_app/components/dix_version_footer_component.dart';
-import 'package:ln_app/components/input_component.dart';
-import 'package:ln_app/utils/app_colors.dart';
+import 'package:ln_app/app/components/big_button_action_component.dart';
+import 'package:ln_app/app/pages/cadastro_page.dart';
+import 'package:ln_app/app/components/custom_text_component.dart';
+import 'package:ln_app/app/components/dix_version_footer_component.dart';
+import 'package:ln_app/app/components/input_component.dart';
+import 'package:ln_app/app/utils/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -50,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                         ifTruePoppinsElseLato: true),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 4.0),
+                    padding: const EdgeInsets.only(left: 4.0, bottom: 10),
                     child: CustomTextComponent(
                         ifTruePoppinsElseLato: true,
                         content: "Informe os dados para acessar",
@@ -68,7 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                         color: AppColors.white),
                   ),
                   const InputComponent(
-                    password: false,
+                    label: "Email",
+                    isPasswordInput: false,
                     placeholder: "email@example.com",
                   ),
                   Padding(
@@ -82,13 +85,14 @@ class _LoginPageState extends State<LoginPage> {
                         color: AppColors.white),
                   ),
                   const InputComponent(
-                    password: true,
+                    label: "Senha",
+                    isPasswordInput: true,
                     placeholder: "********",
                   ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
+                      padding: const EdgeInsets.only(top: 4.0, bottom: 18),
                       child: GestureDetector(
                         onTap: () {},
                         child: CustomTextComponent(
@@ -100,62 +104,26 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const Spacer(),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                fixedSize: const MaterialStatePropertyAll(
-                                    Size(double.infinity, 50)),
-                                elevation: const MaterialStatePropertyAll(7),
-                                shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8))),
-                                padding: const MaterialStatePropertyAll(
-                                    EdgeInsets.symmetric(vertical: 15)),
-                                backgroundColor: const MaterialStatePropertyAll(
-                                    AppColors.yellow)),
-                            onPressed: () {},
-                            child: CustomTextComponent(
-                                content: "Entrar",
-                                size: 20,
-                                color: AppColors.white,
-                                ifTruePoppinsElseLato: true)),
-                      ),
-                    ],
-                  ),
+                  const BigButtonActionComponent(
+                      //TODO: Criar tela logado
+                      fontSize: 20,
+                      pageToNavigate: CadastroPage(),
+                      label: "Entrar",
+                      backgroundColor: AppColors.yellow,
+                      borderRadius: 8,
+                      borderColor: AppColors.yellow),
                   const SizedBox(
                     height: 26,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                fixedSize: const MaterialStatePropertyAll(
-                                    Size(double.infinity, 50)),
-                                shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                          color: AppColors.white,
-                                          width: 2,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8))),
-                                backgroundColor: const MaterialStatePropertyAll(
-                                    Color.fromARGB(0, 255, 255, 255))),
-                            onPressed: () {},
-                            child: CustomTextComponent(
-                                content: "Criar conta",
-                                size: 20,
-                                color: AppColors.white,
-                                ifTruePoppinsElseLato: true)),
-                      ),
-                    ],
-                  ),
+                  const BigButtonActionComponent(
+                      fontSize: 20,
+                      pageToNavigate: CadastroPage(),
+                      label: "Criar conta",
+                      backgroundColor: AppColors.transparent,
+                      borderRadius: 8,
+                      borderColor: AppColors.white),
                   const Spacer(
-                    flex: 4,
+                    flex: 3,
                   ),
                   const Align(
                       alignment: Alignment.center,
