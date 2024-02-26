@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ln_app/app/utils/app_colors.dart';
+import 'package:ln_app/app/utils/app_colors_utils.dart';
 
 class InputComponent extends StatefulWidget {
   final String label;

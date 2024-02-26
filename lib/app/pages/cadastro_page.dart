@@ -3,8 +3,8 @@ import 'package:ln_app/app/components/appbar_component.dart';
 import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/input_component.dart';
-import 'package:ln_app/app/pages/login_page.dart';
-import 'package:ln_app/app/utils/app_colors.dart';
+import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:ln_app/app/utils/messages_utils.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
@@ -15,6 +15,10 @@ class CadastroPage extends StatefulWidget {
 
 class _CadastroPageState extends State<CadastroPage> {
   bool _value = false;
+
+  void delay({required Duration time}) async {
+    await Future.delayed(time);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,13 +169,35 @@ class _CadastroPageState extends State<CadastroPage> {
               const SizedBox(
                 height: 30,
               ),
-              const BigButtonActionComponent(
+              BigButtonActionComponent(
+                  ifTruePoppinsElseLato: true,
                   label: "Criar conta",
                   backgroundColor: AppColors.confirm,
                   borderRadius: 7,
                   fontSize: 16,
                   borderColor: AppColors.confirm,
-                  pageToNavigate: LoginPage()),
+                  onTap: () {
+                    MessageUtils.message(
+                        context,
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.done,
+                              color: AppColors.inputFillColor,
+                            ),
+                            Expanded(
+                              child: CustomTextComponent(
+                                  content:
+                                      "Seu cadastro foi realizado com sucesso",
+                                  size: 15,
+                                  color: AppColors.white,
+                                  ifTruePoppinsElseLato: true),
+                            ),
+                          ],
+                        ),
+                        AppColors.darkConfirm,
+                        const Duration(seconds: 1));
+                  }),
               const SizedBox(
                 height: 30,
               ),

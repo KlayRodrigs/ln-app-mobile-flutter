@@ -10,6 +10,9 @@ class AppColors {
   static const Color yellow = Color.fromRGBO(174, 132, 26, 1);
   static const Color background = Color.fromRGBO(34, 34, 34, 1);
   static const Color confirm = Color.fromRGBO(0, 136, 0, 1);
+  static const Color darkConfirm = Color.fromRGBO(30, 61, 25, 1);
+  static const Color subTexts = Color.fromRGBO(68, 68, 68, 1);
+  static const Color liveRed = Color.fromRGBO(200, 35, 35, 1);
   static const List<Color> degrade = [
     Colors.black,
     Color.fromRGBO(38, 38, 41, 1),

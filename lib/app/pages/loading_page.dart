@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:ln_app/app/pages/login_page.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/dix_version_footer_component.dart';
-import 'package:ln_app/app/utils/app_colors.dart';
+import 'package:ln_app/app/utils/app_colors_utils.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -68,7 +68,9 @@ class _LoadingPageState extends State<LoadingPage> {
                 color: AppColors.white,
               ),
             ),
-            const DixVersionFooterComponent()
+            const DixVersionFooterComponent(
+              size: 8,
+            )
           ],
         ),
       ),

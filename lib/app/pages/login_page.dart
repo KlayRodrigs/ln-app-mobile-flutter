@@ -4,7 +4,9 @@ import 'package:ln_app/app/pages/cadastro_page.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/dix_version_footer_component.dart';
 import 'package:ln_app/app/components/input_component.dart';
-import 'package:ln_app/app/utils/app_colors.dart';
+import 'package:ln_app/app/pages/home_listagem_page.dart';
+import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -104,10 +106,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const Spacer(),
-                  const BigButtonActionComponent(
-                      //TODO: Criar tela logado
+                  BigButtonActionComponent(
+                      ifTruePoppinsElseLato: true,
                       fontSize: 20,
-                      pageToNavigate: CadastroPage(),
+                      onTap: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeListagemPage(),
+                          )),
                       label: "Entrar",
                       backgroundColor: AppColors.yellow,
                       borderRadius: 8,
@@ -115,9 +121,15 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 26,
                   ),
-                  const BigButtonActionComponent(
+                  BigButtonActionComponent(
+                      ifTruePoppinsElseLato: true,
                       fontSize: 20,
-                      pageToNavigate: CadastroPage(),
+                      onTap: () => Navigator.push(
+                          context,
+                          PageTransition(
+                              duration: const Duration(milliseconds: 400),
+                              type: PageTransitionType.rightToLeft,
+                              child: const CadastroPage())),
                       label: "Criar conta",
                       backgroundColor: AppColors.transparent,
                       borderRadius: 8,
@@ -127,7 +139,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const Align(
                       alignment: Alignment.center,
-                      child: DixVersionFooterComponent()),
+                      child: DixVersionFooterComponent(
+                        size: 8,
+                      )),
                 ],
               ),
             ),

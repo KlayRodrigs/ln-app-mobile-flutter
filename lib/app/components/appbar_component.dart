@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
-import 'package:ln_app/app/utils/app_colors.dart';
+import 'package:ln_app/app/utils/app_colors_utils.dart';
 
 class AppbarComponent extends StatelessWidget {
   final String title;

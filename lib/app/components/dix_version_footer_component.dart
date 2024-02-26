@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 
 class DixVersionFooterComponent extends StatelessWidget {
-  const DixVersionFooterComponent({super.key});
+  final double size;
+  const DixVersionFooterComponent({super.key, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class DixVersionFooterComponent extends StatelessWidget {
           child: CustomTextComponent(
             ifTruePoppinsElseLato: true,
             content: "V 2.0.0.1",
-            size: 8,
+            size: size,
             color: const Color.fromARGB(188, 255, 255, 255),
           ),
         )

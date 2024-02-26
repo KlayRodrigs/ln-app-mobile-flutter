@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
-import 'package:ln_app/app/utils/app_colors.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:ln_app/app/utils/app_colors_utils.dart';
 
 class BigButtonActionComponent extends StatelessWidget {
   final String label;
   final Color backgroundColor, borderColor;
   final double borderRadius, fontSize;
-  final Widget pageToNavigate;
+  final bool ifTruePoppinsElseLato;
+  final void Function() onTap;
   const BigButtonActionComponent(
       {super.key,
       required this.label,
       required this.backgroundColor,
       required this.borderRadius,
       required this.borderColor,
-      required this.pageToNavigate,
-      required this.fontSize});
+      required this.onTap,
+      required this.fontSize,
+      required this.ifTruePoppinsElseLato});
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +35,13 @@ class BigButtonActionComponent extends StatelessWidget {
                       borderRadius: BorderRadius.circular(borderRadius))),
                   backgroundColor: MaterialStatePropertyAll(backgroundColor)),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        duration: const Duration(milliseconds: 400),
-                        type: PageTransitionType.rightToLeft,
-                        child: pageToNavigate));
+                onTap();
               },
               child: CustomTextComponent(
                   content: label,
                   size: fontSize,
                   color: AppColors.white,
-                  ifTruePoppinsElseLato: true)),
+                  ifTruePoppinsElseLato: ifTruePoppinsElseLato)),
         ),
       ],
     );
