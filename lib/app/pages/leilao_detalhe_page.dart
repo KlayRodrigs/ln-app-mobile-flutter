@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:ln_app/app/components/appbar_component.dart';
 import 'package:ln_app/app/components/batch_banner_component.dart';
 import 'package:ln_app/app/components/batch_card_component.dart';
@@ -6,6 +7,8 @@ import 'package:ln_app/app/components/card_contact_component.dart';
 import 'package:ln_app/app/components/card_description_component.dart';
 import 'package:ln_app/app/components/card_local_info_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
+import 'package:ln_app/app/components/drawer_component.dart';
+import 'package:ln_app/app/pages/home_listagem_page.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 
 class DetalheLeilaoPage extends StatefulWidget {
@@ -18,6 +21,7 @@ class DetalheLeilaoPage extends StatefulWidget {
 
 class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
   int _index = 1;
+  int navCount = 0;
 
   void increment() {
     _index = _index + 1;
@@ -29,6 +33,7 @@ class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: PreferredSize(
@@ -54,7 +59,7 @@ class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
               ),
               Container(
                 padding: const EdgeInsets.all(20),
-                width: 280.8,
+                width: screenSize.width >= 481 ? null : 280.8,
                 decoration: BoxDecoration(
                     color: AppColors.black,
                     borderRadius: BorderRadius.circular(7.2)),
@@ -113,177 +118,225 @@ class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
               const BatchCardComponent(imagePath: "assets/images/gados4.png"),
               const BatchCardComponent(imagePath: "assets/images/gados5.png"),
               Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 10.0, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                        onPressed: () {
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: SizedBox(
+                  width: 400,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (_index > 1 && _index < 6) {
+                                decrement();
+                              }
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios_rounded,
+                            color: AppColors.inputFillColor,
+                          )),
+                      GestureDetector(
+                        onTap: () {
                           setState(() {
-                            if (_index > 1 && _index < 6) {
-                              decrement();
-                            }
+                            _index = 1;
                           });
                         },
-                        icon: const Icon(
-                          Icons.arrow_back_ios_rounded,
-                          color: AppColors.inputFillColor,
-                        )),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _index = 1;
-                        });
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: _index == 1
-                                ? AppColors.transparent
-                                : AppColors.confirm,
-                            border: Border.all(
-                                color: _index == 1
-                                    ? AppColors.confirm
-                                    : AppColors.transparent),
-                            borderRadius: BorderRadius.circular(4.44)),
-                        child: Center(
-                          child: CustomTextComponent(
-                              content: "1",
-                              size: 18,
-                              color: AppColors.white,
-                              ifTruePoppinsElseLato: true),
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: _index == 1
+                                  ? AppColors.transparent
+                                  : AppColors.confirm,
+                              border: Border.all(
+                                  color: _index == 1
+                                      ? AppColors.confirm
+                                      : AppColors.transparent),
+                              borderRadius: BorderRadius.circular(4.44)),
+                          child: Center(
+                            child: CustomTextComponent(
+                                content: "1",
+                                size: 18,
+                                color: AppColors.white,
+                                ifTruePoppinsElseLato: true),
+                          ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _index = 2;
-                        });
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: _index == 2
-                                ? AppColors.transparent
-                                : AppColors.confirm,
-                            border: Border.all(
-                                color: _index == 2
-                                    ? AppColors.confirm
-                                    : AppColors.transparent),
-                            borderRadius: BorderRadius.circular(4.44)),
-                        child: Center(
-                          child: CustomTextComponent(
-                              content: "2",
-                              size: 18,
-                              color: AppColors.white,
-                              ifTruePoppinsElseLato: true),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _index = 3;
-                        });
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: _index == 3
-                                ? AppColors.transparent
-                                : AppColors.confirm,
-                            border: Border.all(
-                                color: _index == 3
-                                    ? AppColors.confirm
-                                    : AppColors.transparent),
-                            borderRadius: BorderRadius.circular(4.44)),
-                        child: Center(
-                          child: CustomTextComponent(
-                              content: "3",
-                              size: 18,
-                              color: AppColors.white,
-                              ifTruePoppinsElseLato: true),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _index = 4;
-                        });
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: _index == 4
-                                ? AppColors.transparent
-                                : AppColors.confirm,
-                            border: Border.all(
-                                color: _index == 4
-                                    ? AppColors.confirm
-                                    : AppColors.transparent),
-                            borderRadius: BorderRadius.circular(4.44)),
-                        child: Center(
-                          child: CustomTextComponent(
-                              content: "4",
-                              size: 18,
-                              color: AppColors.white,
-                              ifTruePoppinsElseLato: true),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _index = 5;
-                        });
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: _index == 5
-                                ? AppColors.transparent
-                                : AppColors.confirm,
-                            border: Border.all(
-                                color: _index == 5
-                                    ? AppColors.confirm
-                                    : AppColors.transparent),
-                            borderRadius: BorderRadius.circular(4.44)),
-                        child: Center(
-                          child: CustomTextComponent(
-                              content: "5",
-                              size: 18,
-                              color: AppColors.white,
-                              ifTruePoppinsElseLato: true),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () {
+                      GestureDetector(
+                        onTap: () {
                           setState(() {
-                            if (_index > 0 && _index < 5) {
-                              increment();
-                            }
+                            _index = 2;
                           });
                         },
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: AppColors.inputFillColor,
-                        ))
-                  ],
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: _index == 2
+                                  ? AppColors.transparent
+                                  : AppColors.confirm,
+                              border: Border.all(
+                                  color: _index == 2
+                                      ? AppColors.confirm
+                                      : AppColors.transparent),
+                              borderRadius: BorderRadius.circular(4.44)),
+                          child: Center(
+                            child: CustomTextComponent(
+                                content: "2",
+                                size: 18,
+                                color: AppColors.white,
+                                ifTruePoppinsElseLato: true),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _index = 3;
+                          });
+                        },
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: _index == 3
+                                  ? AppColors.transparent
+                                  : AppColors.confirm,
+                              border: Border.all(
+                                  color: _index == 3
+                                      ? AppColors.confirm
+                                      : AppColors.transparent),
+                              borderRadius: BorderRadius.circular(4.44)),
+                          child: Center(
+                            child: CustomTextComponent(
+                                content: "3",
+                                size: 18,
+                                color: AppColors.white,
+                                ifTruePoppinsElseLato: true),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _index = 4;
+                          });
+                        },
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: _index == 4
+                                  ? AppColors.transparent
+                                  : AppColors.confirm,
+                              border: Border.all(
+                                  color: _index == 4
+                                      ? AppColors.confirm
+                                      : AppColors.transparent),
+                              borderRadius: BorderRadius.circular(4.44)),
+                          child: Center(
+                            child: CustomTextComponent(
+                                content: "4",
+                                size: 18,
+                                color: AppColors.white,
+                                ifTruePoppinsElseLato: true),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _index = 5;
+                          });
+                        },
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: _index == 5
+                                  ? AppColors.transparent
+                                  : AppColors.confirm,
+                              border: Border.all(
+                                  color: _index == 5
+                                      ? AppColors.confirm
+                                      : AppColors.transparent),
+                              borderRadius: BorderRadius.circular(4.44)),
+                          child: Center(
+                            child: CustomTextComponent(
+                                content: "5",
+                                size: 18,
+                                color: AppColors.white,
+                                ifTruePoppinsElseLato: true),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (_index > 0 && _index < 5) {
+                                increment();
+                              }
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: AppColors.inputFillColor,
+                          ))
+                    ],
+                  ),
                 ),
               )
             ],
           ),
         ),
       ),
+      drawer: const DrawerComponent(),
+      bottomNavigationBar: BottomNavigationBar(
+          selectedFontSize: screenSize.width >= 481 ? 20 : 14,
+          unselectedFontSize: screenSize.width >= 481 ? 20 : 14,
+          selectedItemColor: AppColors.yellow,
+          unselectedItemColor: AppColors.white,
+          currentIndex: navCount,
+          onTap: (value) {
+            setState(() {
+              navCount = value;
+              if (navCount == 0) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const HomeListagemPage().animate().fadeIn(),
+                    ));
+              }
+            });
+          },
+          backgroundColor: AppColors.transparent,
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                "assets/images/gavel.png",
+                color: navCount == 0 ? AppColors.yellow : AppColors.white,
+                height: screenSize.width >= 481 ? 40 : 20,
+              ),
+              label: "Leilões",
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                "assets/images/clock.png",
+                color: navCount == 1 ? AppColors.yellow : AppColors.white,
+                height: screenSize.width >= 481 ? 40 : 20,
+              ),
+              label: "Venda direta",
+            ),
+            BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/profit.png",
+                  color: navCount == 2 ? AppColors.yellow : AppColors.white,
+                  height: screenSize.width >= 481 ? 40 : 20,
+                ),
+                label: "Resultados")
+          ]),
     );
   }
 }

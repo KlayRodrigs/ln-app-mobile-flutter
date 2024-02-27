@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:sizer/sizer.dart';
 
 class BatchBannerComponent extends StatelessWidget {
   final String imagePath, centeredTitle, bottomTitle;
@@ -12,6 +13,7 @@ class BatchBannerComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
@@ -19,18 +21,22 @@ class BatchBannerComponent extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(6.85),
                 topRight: Radius.circular(6.85))),
-        width: 280.8,
+        width: screenSize.width >= 481 ? 400 : 280.8,
         child: Column(
           children: [
-            Image.asset(imagePath),
+            Image.asset(
+              imagePath,
+              width: screenSize.width >= 481 ? 400 : 280.8,
+              fit: BoxFit.fill,
+            ),
             Container(
-              width: 280.8,
-              height: 45.7,
+              width: screenSize.width >= 481 ? double.infinity : 280.8,
+              height: screenSize.width >= 481 ? 20.sp : 45.7,
               color: AppColors.yellow,
               child: Center(
                 child: CustomTextComponent(
                     content: centeredTitle,
-                    size: 14.43,
+                    size: screenSize.width >= 481 ? 6.sp : 14.43,
                     color: AppColors.white,
                     ifTruePoppinsElseLato: false),
               ),
@@ -42,12 +48,11 @@ class BatchBannerComponent extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(6.85),
                       bottomRight: Radius.circular(6.85))),
-              width: 280.8,
               child: Center(
                 child: CustomTextComponent(
                     alignment: TextAlign.justify,
                     content: bottomTitle,
-                    size: 14.43,
+                    size: screenSize.width >= 481 ? 6.sp : 14.43,
                     color: AppColors.white,
                     ifTruePoppinsElseLato: false),
               ),

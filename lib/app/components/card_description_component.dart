@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:sizer/sizer.dart';
 
 class CardDescriptionComponent extends StatelessWidget {
   final String description;
@@ -8,11 +9,13 @@ class CardDescriptionComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
         padding: const EdgeInsets.all(20),
-        width: 280.8,
+        width: screenSize.width >= 481 ? 400 : 280.8,
         decoration: BoxDecoration(
             color: AppColors.black, borderRadius: BorderRadius.circular(7.2)),
         child: Column(
@@ -20,14 +23,14 @@ class CardDescriptionComponent extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.description_outlined,
                   color: Colors.white,
-                  size: 14,
+                  size: screenSize.width >= 481 ? 20 : 14,
                 ),
                 CustomTextComponent(
                     content: "Descrição:",
-                    size: 14,
+                    size: screenSize.width >= 481 ? 20 : 14,
                     color: AppColors.white,
                     ifTruePoppinsElseLato: false),
               ],
@@ -37,7 +40,7 @@ class CardDescriptionComponent extends StatelessWidget {
             ),
             CustomTextComponent(
                 content: description,
-                size: 12,
+                size: screenSize.width >= 481 ? 5.sp : 12,
                 color: AppColors.white,
                 alignment: TextAlign.justify,
                 ifTruePoppinsElseLato: false)

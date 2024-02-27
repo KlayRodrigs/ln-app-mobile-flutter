@@ -4,11 +4,11 @@ import 'package:ln_app/app/components/batch_banner_component.dart';
 import 'package:ln_app/app/components/batch_image_component.dart';
 import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
-import 'package:ln_app/app/components/dix_version_footer_component.dart';
+import 'package:ln_app/app/components/drawer_component.dart';
 import 'package:ln_app/app/components/live_card_component.dart';
 import 'package:ln_app/app/pages/leilao_detalhe_page.dart';
-import 'package:ln_app/app/pages/login_page.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeListagemPage extends StatefulWidget {
   const HomeListagemPage({super.key});
@@ -21,6 +21,7 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: const PreferredSize(
@@ -35,7 +36,7 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
             const LiveCardComponent(),
             CustomTextComponent(
                 content: "Próximos Leilões",
-                size: 16,
+                size: screenSize.width >= 481 ? 10.sp : 16,
                 color: AppColors.white,
                 weight: FontWeight.w500,
                 ifTruePoppinsElseLato: true),
@@ -81,8 +82,8 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
               height: 10,
             ),
             SizedBox(
-              width: 197,
-              height: 39,
+              width: screenSize.width >= 481 ? 240 : 197,
+              height: screenSize.width >= 481 ? 50 : 39,
               child: BigButtonActionComponent(
                   ifTruePoppinsElseLato: false,
                   label: "Ver mais lotes",
@@ -97,7 +98,7 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                               const DetalheLeilaoPage(batchName: "Lote 175"),
                         ));
                   },
-                  fontSize: 13.36),
+                  fontSize: screenSize.width >= 481 ? 7.sp : 13.36),
             ),
             const SizedBox(
               height: 10,
@@ -137,8 +138,8 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
               height: 10,
             ),
             SizedBox(
-              width: 197,
-              height: 39,
+              width: screenSize.width >= 481 ? 240 : 197,
+              height: screenSize.width >= 481 ? 50 : 39,
               child: BigButtonActionComponent(
                   ifTruePoppinsElseLato: false,
                   label: "Ver mais lotes",
@@ -146,14 +147,14 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                   borderRadius: 5.34,
                   borderColor: AppColors.yellow,
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
                               const DetalheLeilaoPage(batchName: "Lote 175"),
                         ));
                   },
-                  fontSize: 13.36),
+                  fontSize: screenSize.width >= 481 ? 7.sp : 13.36),
             ),
             const SizedBox(
               height: 20,
@@ -161,102 +162,7 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: AppColors.degradeAppbar,
-                  end: Alignment.topCenter,
-                  begin: Alignment.bottomCenter,
-                  stops: [0.3, 1])),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: AppColors.white,
-                    size: 26,
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 70.0,
-                ),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset(
-                          "assets/images/gados.png",
-                          height: 70,
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40.0, top: 40),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.edit,
-                            color: AppColors.white,
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 70),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: CustomTextComponent(
-                      content: "Rei do gado",
-                      size: 18,
-                      color: AppColors.white,
-                      ifTruePoppinsElseLato: true),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 70, top: 6),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: CustomTextComponent(
-                      content: "reidogado@gmail.com",
-                      size: 14,
-                      color: AppColors.white,
-                      ifTruePoppinsElseLato: true),
-                ),
-              ),
-              const Spacer(),
-              Align(
-                alignment: Alignment.center,
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ));
-                    },
-                    child: CustomTextComponent(
-                        content: "Sair",
-                        size: 22,
-                        color: AppColors.white,
-                        ifTruePoppinsElseLato: true)),
-              ),
-              const Align(
-                alignment: Alignment.center,
-                child: DixVersionFooterComponent(
-                  size: 14,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      drawer: const DrawerComponent(),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
             boxShadow: [BoxShadow(color: Color.fromARGB(13, 255, 255, 255))],
@@ -266,6 +172,8 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                 begin: Alignment.topCenter,
                 stops: [0.2, 1])),
         child: BottomNavigationBar(
+            selectedFontSize: screenSize.width >= 481 ? 20 : 14,
+            unselectedFontSize: screenSize.width >= 481 ? 20 : 14,
             selectedItemColor: AppColors.yellow,
             unselectedItemColor: AppColors.white,
             currentIndex: _index,
@@ -280,22 +188,23 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                 icon: Image.asset(
                   "assets/images/gavel.png",
                   color: _index == 0 ? AppColors.yellow : AppColors.white,
-                  height: 20,
+                  height: screenSize.width >= 481 ? 40 : 20,
                 ),
                 label: "Leilões",
               ),
               BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/images/clock.png",
-                    color: _index == 1 ? AppColors.yellow : AppColors.white,
-                    height: 20,
-                  ),
-                  label: "Venda direta"),
+                icon: Image.asset(
+                  "assets/images/clock.png",
+                  color: _index == 1 ? AppColors.yellow : AppColors.white,
+                  height: screenSize.width >= 481 ? 40 : 20,
+                ),
+                label: "Venda direta",
+              ),
               BottomNavigationBarItem(
                   icon: Image.asset(
                     "assets/images/profit.png",
                     color: _index == 2 ? AppColors.yellow : AppColors.white,
-                    height: 20,
+                    height: screenSize.width >= 481 ? 40 : 20,
                   ),
                   label: "Resultados")
             ]),

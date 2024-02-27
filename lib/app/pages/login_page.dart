@@ -7,6 +7,7 @@ import 'package:ln_app/app/components/dix_version_footer_component.dart';
 import 'package:ln_app/app/pages/home_listagem_page.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -47,7 +49,8 @@ class _LoginPageState extends State<LoginPage> {
                 end: Alignment.bottomCenter,
                 stops: [0.1, 0.5, 1])),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: screenSize.width >= 481 ? 14.w : 40.0),
           child: SingleChildScrollView(
             child: ConstrainedBox(
               constraints:
@@ -58,7 +61,13 @@ class _LoginPageState extends State<LoginPage> {
                   const Spacer(
                     flex: 4,
                   ),
-                  Center(child: Image.asset("assets/images/logo_menor.png")),
+                  Center(
+                      child: screenSize.width >= 481
+                          ? Image.asset(
+                              "assets/images/logo_maior.png",
+                              height: 250,
+                            )
+                          : Image.asset("assets/images/logo_menor.png")),
                   const Spacer(
                     flex: 2,
                   ),
@@ -66,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(bottom: 2.0, left: 4.0),
                     child: CustomTextComponent(
                         content: "Entrar",
-                        size: 20,
+                        size: screenSize.width >= 481 ? 40 : 20,
                         color: AppColors.white,
                         weight: FontWeight.w900,
                         ifTruePoppinsElseLato: true),
@@ -76,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: CustomTextComponent(
                         ifTruePoppinsElseLato: true,
                         content: "Informe os dados para acessar",
-                        size: 15,
+                        size: screenSize.width >= 481 ? 30 : 15,
                         color: AppColors.white),
                   ),
                   const Spacer(),
@@ -92,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ifTruePoppinsElseLato: false,
                                 content: "Email",
                                 weight: FontWeight.w400,
-                                size: 16,
+                                size: screenSize.width >= 481 ? 32 : 16,
                                 color: AppColors.white),
                           ),
                           TextFormField(
@@ -108,10 +117,15 @@ class _LoginPageState extends State<LoginPage> {
                               }
                               return null;
                             },
-                            style: const TextStyle(fontSize: 14, height: 0.1),
+                            style: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 26 : 14,
+                                height: screenSize.width >= 481 ? 1 : 0.1),
                             controller: emailController,
                             decoration: InputDecoration(
-                                iconColor: Colors.black,
+                                errorStyle: TextStyle(
+                                    fontSize:
+                                        screenSize.width >= 481 ? 20 : 14),
+                                iconColor: AppColors.black,
                                 hintStyle:
                                     const TextStyle(color: Colors.black38),
                                 border: OutlineInputBorder(
@@ -128,21 +142,26 @@ class _LoginPageState extends State<LoginPage> {
                                 ifTruePoppinsElseLato: false,
                                 content: "Senha",
                                 weight: FontWeight.w400,
-                                size: 16,
+                                size: screenSize.width >= 481 ? 32 : 16,
                                 color: AppColors.white),
                           ),
                           TextFormField(
                             obscureText: true,
                             validator: (value) {
                               if (value == null || value.length < 5) {
-                                return "A senha não pode ser menor que 4 caracteres";
+                                return "A senha é muito pequena";
                               }
                               return null;
                             },
-                            style: const TextStyle(fontSize: 14, height: 0.1),
+                            style: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 26 : 14,
+                                height: screenSize.width >= 481 ? 1 : 0.1),
                             controller: passwordController,
                             decoration: InputDecoration(
-                                iconColor: Colors.black,
+                                errorStyle: TextStyle(
+                                    fontSize:
+                                        screenSize.width >= 481 ? 20 : 14),
+                                iconColor: AppColors.black,
                                 hintStyle:
                                     const TextStyle(color: Colors.black38),
                                 border: OutlineInputBorder(
@@ -155,13 +174,14 @@ class _LoginPageState extends State<LoginPage> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 4.0, bottom: 30),
+                              padding: EdgeInsets.only(
+                                  top: 4.0,
+                                  bottom: screenSize.width >= 481 ? 50 : 30),
                               child: GestureDetector(
                                 onTap: () {},
                                 child: CustomTextComponent(
                                     content: "Esqueceu sua senha ?",
-                                    size: 13,
+                                    size: screenSize.width >= 481 ? 20 : 13,
                                     color: AppColors.links,
                                     ifTruePoppinsElseLato: true),
                               ),
@@ -169,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           BigButtonActionComponent(
                               ifTruePoppinsElseLato: true,
-                              fontSize: 20,
+                              fontSize: screenSize.width >= 481 ? 28 : 20,
                               onTap: () async {
                                 if (validaEmail()) {
                                   await Future.delayed(
@@ -186,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           BigButtonActionComponent(
                               ifTruePoppinsElseLato: true,
-                              fontSize: 20,
+                              fontSize: screenSize.width >= 481 ? 28 : 20,
                               onTap: () => Navigator.push(
                                   context,
                                   PageTransition(

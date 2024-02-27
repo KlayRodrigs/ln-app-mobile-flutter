@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:sizer/sizer.dart';
 
 class BatchImage extends StatelessWidget {
   final String batchName, imagePath;
@@ -13,6 +14,7 @@ class BatchImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(bottom: 9.52),
       child: Stack(
@@ -22,14 +24,15 @@ class BatchImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(3.74),
             child: Image.asset(
               imagePath,
-              width: 280.8,
-              height: 280.8,
+              fit: BoxFit.fitHeight,
+              width: screenSize.width >= 481 ? 400 : 280.8,
+              height: screenSize.width >= 481 ? 400 : 280.8,
             ),
           )),
           Center(
             child: Container(
-              width: 280.8,
-              height: 63.65,
+              width: screenSize.width >= 481 ? 400 : 280.8,
+              height: screenSize.width >= 481 ? 100 : 63.65,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(3.74)),
                   gradient: LinearGradient(
@@ -45,7 +48,7 @@ class BatchImage extends StatelessWidget {
                     children: [
                       CustomTextComponent(
                         content: batchName,
-                        size: 12.2,
+                        size: screenSize.width >= 481 ? 8.sp : 12.2,
                         color: AppColors.white,
                         ifTruePoppinsElseLato: false,
                         weight: FontWeight.w900,
@@ -55,13 +58,15 @@ class BatchImage extends StatelessWidget {
                           Image.asset(
                             "assets/images/cow.png",
                             color: AppColors.white,
+                            fit: BoxFit.cover,
+                            height: screenSize.width >= 481 ? 7.sp : 9.98,
                           ),
                           const SizedBox(
                             width: 4,
                           ),
                           CustomTextComponent(
                               content: "$amount Fêmeas",
-                              size: 9.98,
+                              size: screenSize.width >= 481 ? 5.sp : 9.98,
                               color: AppColors.white,
                               ifTruePoppinsElseLato: true)
                         ],

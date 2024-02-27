@@ -9,11 +9,12 @@ class CardContactComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
           padding: const EdgeInsets.all(20),
-          width: 280.8,
+          width: screenSize.width >= 481 ? 400 : 280.8,
           decoration: BoxDecoration(
               color: AppColors.black, borderRadius: BorderRadius.circular(7.2)),
           child: Column(children: [
@@ -23,7 +24,7 @@ class CardContactComponent extends StatelessWidget {
                   Image.asset("assets/images/wpp_icon.png"),
                   CustomTextComponent(
                       content: phone,
-                      size: 12,
+                      size: screenSize.width >= 481 ? 20 : 12,
                       color: AppColors.white,
                       ifTruePoppinsElseLato: false)
                 ],
@@ -33,7 +34,7 @@ class CardContactComponent extends StatelessWidget {
                   Image.asset("assets/images/wpp_icon.png"),
                   CustomTextComponent(
                       content: phone,
-                      size: 12,
+                      size: screenSize.width >= 481 ? 20 : 12,
                       color: AppColors.white,
                       ifTruePoppinsElseLato: false)
                 ],

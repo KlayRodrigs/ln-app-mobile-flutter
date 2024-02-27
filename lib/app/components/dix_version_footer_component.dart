@@ -7,11 +7,14 @@ class DixVersionFooterComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 6.0, top: 20),
-          child: Image.asset("assets/images/logo_dix.png"),
+          child: screenSize.width >= 481
+              ? Image.asset("assets/images/logo_dix_grande.png")
+              : Image.asset("assets/images/logo_dix.png"),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 20.0),

@@ -4,6 +4,7 @@ import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 import 'package:ln_app/app/utils/messages_utils.dart';
+import 'package:sizer/sizer.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
@@ -34,6 +35,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: const PreferredSize(
@@ -41,7 +43,8 @@ class _CadastroPageState extends State<CadastroPage> {
           child: AppbarComponent(title: "Criar Conta")),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: screenSize.width >= 481 ? 14.w : 30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,7 +60,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             ifTruePoppinsElseLato: false,
                             content: "Nome completo",
                             weight: FontWeight.w400,
-                            size: 16,
+                            size: screenSize.width >= 481 ? 32 : 16,
                             color: AppColors.white),
                       ),
                       TextFormField(
@@ -70,9 +73,13 @@ class _CadastroPageState extends State<CadastroPage> {
                           }
                           return null;
                         },
-                        style: const TextStyle(fontSize: 14, height: 0.1),
+                        style: TextStyle(
+                            fontSize: screenSize.width >= 481 ? 26 : 14,
+                            height: screenSize.width >= 481 ? 1 : 0.1),
                         controller: nameController,
                         decoration: InputDecoration(
+                            errorStyle: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 20 : 14),
                             iconColor: AppColors.black,
                             hintStyle: const TextStyle(color: Colors.black38),
                             border: OutlineInputBorder(
@@ -89,7 +96,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             ifTruePoppinsElseLato: false,
                             content: "Email",
                             weight: FontWeight.w400,
-                            size: 16,
+                            size: screenSize.width >= 481 ? 32 : 16,
                             color: AppColors.white),
                       ),
                       TextFormField(
@@ -105,9 +112,13 @@ class _CadastroPageState extends State<CadastroPage> {
                           }
                           return null;
                         },
-                        style: const TextStyle(fontSize: 14, height: 0.1),
+                        style: TextStyle(
+                            fontSize: screenSize.width >= 481 ? 26 : 14,
+                            height: screenSize.width >= 481 ? 1 : 0.1),
                         controller: emailController,
                         decoration: InputDecoration(
+                            errorStyle: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 20 : 14),
                             iconColor: AppColors.black,
                             hintStyle: const TextStyle(color: Colors.black38),
                             border: OutlineInputBorder(
@@ -124,7 +135,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             ifTruePoppinsElseLato: false,
                             content: "Celular",
                             weight: FontWeight.w400,
-                            size: 16,
+                            size: screenSize.width >= 481 ? 32 : 16,
                             color: AppColors.white),
                       ),
                       TextFormField(
@@ -137,9 +148,13 @@ class _CadastroPageState extends State<CadastroPage> {
                           }
                           return null;
                         },
-                        style: const TextStyle(fontSize: 14, height: 0.1),
+                        style: TextStyle(
+                            fontSize: screenSize.width >= 481 ? 26 : 14,
+                            height: screenSize.width >= 481 ? 1 : 0.1),
                         controller: phoneController,
                         decoration: InputDecoration(
+                            errorStyle: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 20 : 14),
                             iconColor: AppColors.black,
                             hintStyle: const TextStyle(color: Colors.black38),
                             border: OutlineInputBorder(
@@ -156,7 +171,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             ifTruePoppinsElseLato: false,
                             content: "Senha",
                             weight: FontWeight.w400,
-                            size: 16,
+                            size: screenSize.width >= 481 ? 32 : 16,
                             color: AppColors.white),
                       ),
                       Stack(
@@ -176,9 +191,14 @@ class _CadastroPageState extends State<CadastroPage> {
                               }
                               return null;
                             },
-                            style: const TextStyle(fontSize: 14, height: 0.1),
+                            style: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 26 : 14,
+                                height: screenSize.width >= 481 ? 1 : 0.1),
                             controller: passwordController,
                             decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                    fontSize:
+                                        screenSize.width >= 481 ? 20 : 14),
                                 iconColor: AppColors.black,
                                 hintStyle:
                                     const TextStyle(color: Colors.black38),
@@ -205,6 +225,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                       ? Icons.visibility
                                       : Icons.visibility_off,
                                   color: AppColors.lightBlack,
+                                  size: screenSize.width >= 481 ? 40 : null,
                                 ),
                               ),
                             ),
@@ -218,7 +239,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             ifTruePoppinsElseLato: false,
                             content: "Confirmar senha",
                             weight: FontWeight.w400,
-                            size: 16,
+                            size: screenSize.width >= 481 ? 32 : 16,
                             color: AppColors.white),
                       ),
                       Stack(
@@ -238,9 +259,14 @@ class _CadastroPageState extends State<CadastroPage> {
                               }
                               return null;
                             },
-                            style: const TextStyle(fontSize: 14, height: 0.1),
+                            style: TextStyle(
+                                fontSize: screenSize.width >= 481 ? 26 : 14,
+                                height: screenSize.width >= 481 ? 1 : 0.1),
                             controller: passwordConfirmController,
                             decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                    fontSize:
+                                        screenSize.width >= 481 ? 20 : 14),
                                 iconColor: AppColors.black,
                                 hintStyle:
                                     const TextStyle(color: Colors.black38),
@@ -268,6 +294,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                       ? Icons.visibility
                                       : Icons.visibility_off,
                                   color: AppColors.lightBlack,
+                                  size: screenSize.width >= 481 ? 40 : null,
                                 ),
                               ),
                             ),
@@ -281,13 +308,15 @@ class _CadastroPageState extends State<CadastroPage> {
                 child: Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 6.0),
+                      padding: const EdgeInsets.only(bottom: 6.0, right: 10),
                       child: Checkbox(
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
                           checkColor: AppColors.white,
-                          side: const BorderSide(
-                              color: AppColors.yellow, width: 2),
+                          side: BorderSide(
+                              color: AppColors.yellow,
+                              width: 2,
+                              strokeAlign: screenSize.width >= 481 ? 6 : 1),
                           value: _value,
                           onChanged: (value) {
                             setState(() {
@@ -296,12 +325,12 @@ class _CadastroPageState extends State<CadastroPage> {
                           }),
                     ),
                     SizedBox(
-                      width: 250,
+                      width: screenSize.width >= 481 ? 60.w : 250,
                       child: Text.rich(TextSpan(
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: AppColors.white,
                               fontFamily: "Poppins",
-                              fontSize: 13),
+                              fontSize: screenSize.width >= 481 ? 20 : 13),
                           text: "Ao criar sua conta você concorda com os ",
                           children: [
                             WidgetSpan(
@@ -309,15 +338,15 @@ class _CadastroPageState extends State<CadastroPage> {
                                     onTap: () {},
                                     child: CustomTextComponent(
                                         content: "Termos de Uso",
-                                        size: 13,
+                                        size: screenSize.width >= 481 ? 20 : 13,
                                         color: AppColors.links,
                                         ifTruePoppinsElseLato: true))),
-                            const WidgetSpan(
+                            WidgetSpan(
                                 child: Text(
                               " e ",
                               style: TextStyle(
                                   color: AppColors.white,
-                                  fontSize: 13,
+                                  fontSize: screenSize.width >= 481 ? 20 : 13,
                                   fontFamily: "Poppins"),
                             )),
                             WidgetSpan(
@@ -325,7 +354,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                     onTap: () {},
                                     child: CustomTextComponent(
                                         content: "Política de Privacidade",
-                                        size: 13,
+                                        size: screenSize.width >= 481 ? 20 : 13,
                                         color: AppColors.links,
                                         ifTruePoppinsElseLato: true))),
                           ])),
@@ -341,7 +370,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   label: "Criar conta",
                   backgroundColor: AppColors.confirm,
                   borderRadius: 7,
-                  fontSize: 16,
+                  fontSize: screenSize.width >= 481 ? 32 : 16,
                   borderColor: AppColors.confirm,
                   onTap: () {
                     if (valida()) {

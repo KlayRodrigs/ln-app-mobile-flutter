@@ -23,13 +23,14 @@ class BigButtonActionComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Row(
       children: [
         Expanded(
           child: ElevatedButton(
               style: ButtonStyle(
-                  fixedSize:
-                      const MaterialStatePropertyAll(Size(double.infinity, 50)),
+                  fixedSize: MaterialStatePropertyAll(
+                      Size(double.infinity, screenSize.width >= 481 ? 65 : 50)),
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       side: BorderSide(
                         color: borderColor,
