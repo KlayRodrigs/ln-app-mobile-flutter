@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/appbar_component.dart';
-import 'package:ln_app/app/components/batch_cad_component.dart';
+import 'package:ln_app/app/components/batch_banner_component.dart';
 import 'package:ln_app/app/components/batch_image_component.dart';
 import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/dix_version_footer_component.dart';
 import 'package:ln_app/app/components/live_card_component.dart';
+import 'package:ln_app/app/pages/leilao_detalhe_page.dart';
 import 'package:ln_app/app/pages/login_page.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 
@@ -46,10 +47,20 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                 color: AppColors.yellow,
               ),
             ),
-            const BatchCardComponent(
-                imagePath: "assets/images/banner-1.png",
-                centeredTitle: "10 FEV.2023 às 19:00",
-                bottomTitle: "LEILÃO VIRTUAL GADO DE CORTE - LOTE 175"),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const DetalheLeilaoPage(batchName: "Lote 175"),
+                    ));
+              },
+              child: const BatchBannerComponent(
+                  imagePath: "assets/images/banner-1.png",
+                  centeredTitle: "10 FEV.2023 às 19:00",
+                  bottomTitle: "LEILÃO VIRTUAL GADO DE CORTE - LOTE 175"),
+            ),
             const BatchImage(
                 amount: 68,
                 batchName: "LOTE 303",
@@ -78,7 +89,14 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                   backgroundColor: AppColors.yellow,
                   borderRadius: 5.34,
                   borderColor: AppColors.yellow,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const DetalheLeilaoPage(batchName: "Lote 175"),
+                        ));
+                  },
                   fontSize: 13.36),
             ),
             const SizedBox(
@@ -92,7 +110,7 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                 color: AppColors.confirm,
               ),
             ),
-            const BatchCardComponent(
+            const BatchBannerComponent(
                 imagePath: "assets/images/banner-2.png",
                 centeredTitle: "10 FEV.2023 às 19:00",
                 bottomTitle: "LEILÃO VIRTUAL GADO DE CORTE - LOTE 175"),
@@ -127,7 +145,14 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                   backgroundColor: AppColors.yellow,
                   borderRadius: 5.34,
                   borderColor: AppColors.yellow,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const DetalheLeilaoPage(batchName: "Lote 175"),
+                        ));
+                  },
                   fontSize: 13.36),
             ),
             const SizedBox(
@@ -145,23 +170,88 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                   begin: Alignment.bottomCenter,
                   stops: [0.3, 1])),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Spacer(),
-              TextButton(
+              const SizedBox(
+                height: 20,
+              ),
+              IconButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
-                        ));
+                    Navigator.pop(context);
                   },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.white,
+                    size: 26,
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 70.0,
+                ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.asset(
+                          "assets/images/gados.png",
+                          height: 70,
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 40.0, top: 40),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.edit,
+                            color: AppColors.white,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 70),
+                child: Align(
+                  alignment: Alignment.centerLeft,
                   child: CustomTextComponent(
-                      content: "Sair",
-                      size: 22,
+                      content: "Rei do gado",
+                      size: 18,
                       color: AppColors.white,
-                      ifTruePoppinsElseLato: true)),
-              const DixVersionFooterComponent(
-                size: 14,
+                      ifTruePoppinsElseLato: true),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 70, top: 6),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: CustomTextComponent(
+                      content: "reidogado@gmail.com",
+                      size: 14,
+                      color: AppColors.white,
+                      ifTruePoppinsElseLato: true),
+                ),
+              ),
+              const Spacer(),
+              Align(
+                alignment: Alignment.center,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ));
+                    },
+                    child: CustomTextComponent(
+                        content: "Sair",
+                        size: 22,
+                        color: AppColors.white,
+                        ifTruePoppinsElseLato: true)),
+              ),
+              const Align(
+                alignment: Alignment.center,
+                child: DixVersionFooterComponent(
+                  size: 14,
+                ),
               )
             ],
           ),

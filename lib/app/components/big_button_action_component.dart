@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 
+// ignore: must_be_immutable
 class BigButtonActionComponent extends StatelessWidget {
   final String label;
   final Color backgroundColor, borderColor;
   final double borderRadius, fontSize;
   final bool ifTruePoppinsElseLato;
   final void Function() onTap;
-  const BigButtonActionComponent(
+  Color fontColor;
+  BigButtonActionComponent(
       {super.key,
+      this.fontColor = AppColors.white,
       required this.label,
       required this.backgroundColor,
       required this.borderRadius,
@@ -40,7 +43,7 @@ class BigButtonActionComponent extends StatelessWidget {
               child: CustomTextComponent(
                   content: label,
                   size: fontSize,
-                  color: AppColors.white,
+                  color: fontColor,
                   ifTruePoppinsElseLato: ifTruePoppinsElseLato)),
         ),
       ],

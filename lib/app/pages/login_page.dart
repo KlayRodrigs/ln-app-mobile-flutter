@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/pages/cadastro_page.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/dix_version_footer_component.dart';
-import 'package:ln_app/app/components/input_component.dart';
 import 'package:ln_app/app/pages/home_listagem_page.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 import 'package:page_transition/page_transition.dart';
@@ -16,6 +16,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void navega(Widget pagina) {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              pagina.animate().fadeIn(duration: const Duration(seconds: 2)),
+        ));
+  }
+
+  bool validaEmail() {
+    return _formKey.currentState!.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,80 +80,128 @@ class _LoginPageState extends State<LoginPage> {
                         color: AppColors.white),
                   ),
                   const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 4.0, bottom: 4.0),
-                    child: CustomTextComponent(
-                        ifTruePoppinsElseLato: false,
-                        content: "Email",
-                        weight: FontWeight.w400,
-                        size: 16,
-                        color: AppColors.white),
-                  ),
-                  const InputComponent(
-                    label: "Email",
-                    isPasswordInput: false,
-                    placeholder: "email@example.com",
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 4.0, bottom: 4.0, top: 10),
-                    child: CustomTextComponent(
-                        ifTruePoppinsElseLato: false,
-                        content: "Senha",
-                        weight: FontWeight.w400,
-                        size: 16,
-                        color: AppColors.white),
-                  ),
-                  const InputComponent(
-                    label: "Senha",
-                    isPasswordInput: true,
-                    placeholder: "********",
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 4.0, bottom: 18),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: CustomTextComponent(
-                            content: "Esqueceu sua senha ?",
-                            size: 13,
-                            color: AppColors.links,
-                            ifTruePoppinsElseLato: true),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  BigButtonActionComponent(
-                      ifTruePoppinsElseLato: true,
-                      fontSize: 20,
-                      onTap: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeListagemPage(),
-                          )),
-                      label: "Entrar",
-                      backgroundColor: AppColors.yellow,
-                      borderRadius: 8,
-                      borderColor: AppColors.yellow),
-                  const SizedBox(
-                    height: 26,
-                  ),
-                  BigButtonActionComponent(
-                      ifTruePoppinsElseLato: true,
-                      fontSize: 20,
-                      onTap: () => Navigator.push(
-                          context,
-                          PageTransition(
-                              duration: const Duration(milliseconds: 400),
-                              type: PageTransitionType.rightToLeft,
-                              child: const CadastroPage())),
-                      label: "Criar conta",
-                      backgroundColor: AppColors.transparent,
-                      borderRadius: 8,
-                      borderColor: AppColors.white),
+                  Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 4.0, bottom: 4.0),
+                            child: CustomTextComponent(
+                                ifTruePoppinsElseLato: false,
+                                content: "Email",
+                                weight: FontWeight.w400,
+                                size: 16,
+                                color: AppColors.white),
+                          ),
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null) {
+                                return "O email não pode ser vazio";
+                              }
+                              if (value.length < 5) {
+                                return "Email inválido";
+                              }
+                              if (!value.contains("@")) {
+                                return "email inválido";
+                              }
+                              return null;
+                            },
+                            style: const TextStyle(fontSize: 14, height: 0.1),
+                            controller: emailController,
+                            decoration: InputDecoration(
+                                iconColor: Colors.black,
+                                hintStyle:
+                                    const TextStyle(color: Colors.black38),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(7)),
+                                focusColor: Colors.yellow,
+                                filled: true,
+                                fillColor: AppColors.inputFillColor,
+                                hintText: "email@example.com"),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 4.0, bottom: 4.0, top: 10),
+                            child: CustomTextComponent(
+                                ifTruePoppinsElseLato: false,
+                                content: "Senha",
+                                weight: FontWeight.w400,
+                                size: 16,
+                                color: AppColors.white),
+                          ),
+                          TextFormField(
+                            obscureText: true,
+                            validator: (value) {
+                              if (value == null || value.length < 5) {
+                                return "A senha não pode ser menor que 4 caracteres";
+                              }
+                              return null;
+                            },
+                            style: const TextStyle(fontSize: 14, height: 0.1),
+                            controller: passwordController,
+                            decoration: InputDecoration(
+                                iconColor: Colors.black,
+                                hintStyle:
+                                    const TextStyle(color: Colors.black38),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(7)),
+                                focusColor: Colors.yellow,
+                                filled: true,
+                                fillColor: AppColors.inputFillColor,
+                                hintText: "*******"),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 4.0, bottom: 30),
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: CustomTextComponent(
+                                    content: "Esqueceu sua senha ?",
+                                    size: 13,
+                                    color: AppColors.links,
+                                    ifTruePoppinsElseLato: true),
+                              ),
+                            ),
+                          ),
+                          BigButtonActionComponent(
+                              ifTruePoppinsElseLato: true,
+                              fontSize: 20,
+                              onTap: () async {
+                                if (validaEmail()) {
+                                  await Future.delayed(
+                                      const Duration(seconds: 1));
+                                  navega(const HomeListagemPage());
+                                }
+                              },
+                              label: "Entrar",
+                              backgroundColor: AppColors.yellow,
+                              borderRadius: 8,
+                              borderColor: AppColors.yellow),
+                          const SizedBox(
+                            height: 26,
+                          ),
+                          BigButtonActionComponent(
+                              ifTruePoppinsElseLato: true,
+                              fontSize: 20,
+                              onTap: () => Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      duration:
+                                          const Duration(milliseconds: 400),
+                                      type: PageTransitionType.rightToLeft,
+                                      child: const CadastroPage())),
+                              label: "Criar conta",
+                              backgroundColor: AppColors.transparent,
+                              borderRadius: 8,
+                              borderColor: AppColors.white),
+                        ],
+                      )),
                   const Spacer(
-                    flex: 3,
+                    flex: 2,
                   ),
                   const Align(
                       alignment: Alignment.center,

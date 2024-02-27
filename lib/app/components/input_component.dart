@@ -31,6 +31,18 @@ class _InputComponentState extends State<InputComponent> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null) {
+          return "O email não pode ser vazio";
+        }
+        if (value.length < 5) {
+          return "Email inválido";
+        }
+        if (!value.contains("@")) {
+          return "email inválido";
+        }
+        return null;
+      },
       style: const TextStyle(fontSize: 14, height: 0.1),
       obscureText: showPassword,
       controller: controller,

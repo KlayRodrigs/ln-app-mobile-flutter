@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 
-class BatchCardComponent extends StatelessWidget {
+class BatchBannerComponent extends StatelessWidget {
   final String imagePath, centeredTitle, bottomTitle;
-  const BatchCardComponent(
+  const BatchBannerComponent(
       {super.key,
       required this.imagePath,
       required this.centeredTitle,
@@ -19,7 +19,6 @@ class BatchCardComponent extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(6.85),
                 topRight: Radius.circular(6.85))),
-        height: 365.6,
         width: 280.8,
         child: Column(
           children: [
@@ -37,15 +36,16 @@ class BatchCardComponent extends StatelessWidget {
               ),
             ),
             Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: const BoxDecoration(
                   color: AppColors.black,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(6.85),
                       bottomRight: Radius.circular(6.85))),
               width: 280.8,
-              height: 45.7,
               child: Center(
                 child: CustomTextComponent(
+                    alignment: TextAlign.justify,
                     content: bottomTitle,
                     size: 14.43,
                     color: AppColors.white,

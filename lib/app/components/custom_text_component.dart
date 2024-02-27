@@ -8,9 +8,11 @@ class CustomTextComponent extends StatelessWidget {
   final Color color;
   final bool ifTruePoppinsElseLato;
   FontWeight weight;
+  TextAlign alignment;
   CustomTextComponent(
       {super.key,
       this.weight = FontWeight.normal,
+      this.alignment = TextAlign.center,
       required this.content,
       required this.size,
       required this.color,
@@ -26,7 +28,7 @@ class CustomTextComponent extends StatelessWidget {
           fontSize: size,
           color: color,
           fontWeight: weight),
-      textAlign: TextAlign.center,
+      textAlign: alignment,
     );
   }
 }
