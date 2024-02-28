@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ln_app/app/components/batch_card_info_component.dart';
 import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
@@ -17,7 +18,7 @@ class _BatchCardComponentState extends State<BatchCardComponent> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return SizedBox(
-      width: screenSize.width >= 481 ? 650 : null,
+      width: screenSize.width >= 481 ? 90.w : null,
       child: Padding(
         padding: EdgeInsets.all(screenSize.width >= 481 ? 16 : 8.0),
         child: Container(
@@ -39,6 +40,8 @@ class _BatchCardComponentState extends State<BatchCardComponent> {
                             borderRadius: BorderRadius.circular(6.34),
                             child: Image.asset(
                               widget.imagePath,
+                              width: 350,
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ),
@@ -50,17 +53,17 @@ class _BatchCardComponentState extends State<BatchCardComponent> {
                               borderRadius: BorderRadius.circular(1.9),
                               child: Image.asset(
                                 "assets/images/gados2.png",
-                                width: screenSize.width >= 481 ? 80 : 47,
+                                width: screenSize.width >= 481 ? 11.w : 47,
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: screenSize.width >= 481 ? 20 : 8),
+                                  horizontal: screenSize.width >= 481 ? 24 : 8),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(1.9),
                                 child: Image.asset(
                                   "assets/images/gados3.png",
-                                  width: screenSize.width >= 481 ? 80 : 47,
+                                  width: screenSize.width >= 481 ? 11.w : 47,
                                 ),
                               ),
                             ),
@@ -69,7 +72,7 @@ class _BatchCardComponentState extends State<BatchCardComponent> {
                               child: Image.asset(
                                 "assets/images/gados4.png",
                                 fit: BoxFit.fill,
-                                width: screenSize.width >= 481 ? 80 : 47,
+                                width: screenSize.width >= 481 ? 11.w : 47,
                               ),
                             ),
                           ],
@@ -81,372 +84,317 @@ class _BatchCardComponentState extends State<BatchCardComponent> {
                     width: 10,
                   ),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 9.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: CustomTextComponent(
-                              content: "Lote 175",
-                              size: screenSize.width >= 481 ? 20 : 14,
-                              color: AppColors.black,
-                              ifTruePoppinsElseLato: true,
-                              weight: FontWeight.w900,
-                            ),
-                          ),
-                          Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BatchCardInfoComponent(
+                            contentDescriptionSize: 9,
+                            descriptionSize: 10,
+                            titleSize: 14.sp,
+                            localFontSize: 10,
+                            title: "Lote 175",
+                            city: "Belo Horizonte - MG",
+                            description: "Descrição do lote: ",
+                            contentDescription:
+                                "\nNovilhas de 24 a 26 meses, 400 a 450kgs, Criadoro TZN"),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Container(
                               width: double.infinity,
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                   border: Border.all(color: AppColors.black),
                                   color: AppColors.transparent,
                                   borderRadius: BorderRadius.circular(7)),
-                              child: Text.rich(TextSpan(children: [
-                                WidgetSpan(
-                                    child: Icon(
-                                  Icons.location_on_outlined,
-                                  size: screenSize.width >= 481 ? 20 : 12,
-                                )),
-                                TextSpan(
-                                    text: "Belo Horizonte - MG ",
-                                    style: TextStyle(
-                                        fontFamily: "Poppins",
-                                        fontSize:
-                                            screenSize.width >= 481 ? 20 : 12,
-                                        color: AppColors.black))
-                              ]))),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: AppColors.black),
-                                    color: AppColors.transparent,
-                                    borderRadius: BorderRadius.circular(7)),
-                                child: Text.rich(TextSpan(children: [
-                                  WidgetSpan(
-                                      child: Icon(
-                                    Icons.description_outlined,
-                                    size: screenSize.width >= 481 ? 20 : 12,
-                                  )),
-                                  TextSpan(
-                                      text: "Descrição do lote: ",
-                                      style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontSize: screenSize.width >= 481
-                                              ? 6.sp
-                                              : 8.57)),
-                                  TextSpan(
-                                      text:
-                                          "\nNovilhas de 24 a 26 meses, 400 a 450kgs, Criadoro TZN",
-                                      style: TextStyle(
-                                          fontSize: screenSize.width >= 481
-                                              ? 5.sp
-                                              : 8.57)),
-                                ]))),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: AppColors.black),
-                                    color: AppColors.transparent,
-                                    borderRadius: BorderRadius.circular(7)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/cow.png",
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/cow.png",
+                                                  color: AppColors.black,
+                                                  fit: BoxFit.cover,
+                                                  height:
+                                                      screenSize.width >= 481
+                                                          ? 9.sp
+                                                          : 12,
+                                                ),
+                                                CustomTextComponent(
+                                                    content: "Quantidade: ",
+                                                    size:
+                                                        screenSize.width >= 481
+                                                            ? 7.sp
+                                                            : 8.57,
                                                     color: AppColors.black,
-                                                    height:
-                                                        screenSize.width >= 481
-                                                            ? 20
-                                                            : 10,
-                                                  ),
-                                                  CustomTextComponent(
-                                                      content: "Quantidade: ",
-                                                      size: screenSize.width >=
-                                                              481
-                                                          ? 5.sp
-                                                          : 8.57,
-                                                      color: AppColors.black,
-                                                      ifTruePoppinsElseLato:
-                                                          false),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 12.0,
-                                                    top: 2,
-                                                    bottom: 4),
-                                                child: CustomTextComponent(
-                                                    content: "01",
-                                                    size:
-                                                        screenSize.width >= 481
-                                                            ? 5.sp
-                                                            : 8.57,
-                                                    color: AppColors.background,
                                                     ifTruePoppinsElseLato:
                                                         false),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.filter_alt,
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  top: 2,
+                                                  bottom: 4),
+                                              child: CustomTextComponent(
+                                                  content: "01",
+                                                  size: screenSize.width >= 481
+                                                      ? 7.sp
+                                                      : 8.57,
+                                                  color: AppColors.black,
+                                                  ifTruePoppinsElseLato: false),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.filter_alt,
+                                                  size: screenSize.width >= 481
+                                                      ? 9.sp
+                                                      : 12,
+                                                  color: AppColors.black,
+                                                ),
+                                                CustomTextComponent(
+                                                    content: "Raça/Cruza: ",
                                                     size:
                                                         screenSize.width >= 481
-                                                            ? 6.sp
+                                                            ? 7.sp
                                                             : 8.57,
-                                                  ),
-                                                  CustomTextComponent(
-                                                      content: "Raça/Cruza: ",
-                                                      size: screenSize.width >=
-                                                              481
-                                                          ? 5.sp
-                                                          : 8.57,
-                                                      color: AppColors.black,
-                                                      ifTruePoppinsElseLato:
-                                                          false),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 12.0,
-                                                    top: 2,
-                                                    bottom: 4),
-                                                child: CustomTextComponent(
-                                                    content: "Angus/Charolês",
-                                                    size:
-                                                        screenSize.width >= 481
-                                                            ? 5.sp
-                                                            : 8.57,
-                                                    color: AppColors.background,
+                                                    color: AppColors.black,
                                                     ifTruePoppinsElseLato:
                                                         false),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/bull.png",
-                                                    height:
-                                                        screenSize.width >= 481
-                                                            ? 5.sp
-                                                            : 10,
-                                                  ),
-                                                  CustomTextComponent(
-                                                      content: "Sexo: ",
-                                                      size: screenSize.width >=
-                                                              481
-                                                          ? 5.sp
-                                                          : 8.57,
-                                                      color: AppColors.black,
-                                                      ifTruePoppinsElseLato:
-                                                          false),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 12.0,
-                                                    top: 2,
-                                                    bottom: 4),
-                                                child: CustomTextComponent(
-                                                    content: "Macho",
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  top: 2,
+                                                  bottom: 4),
+                                              child: CustomTextComponent(
+                                                  content: "Angus/Charolês",
+                                                  size: screenSize.width >= 481
+                                                      ? 7.sp
+                                                      : 8.57,
+                                                  color: AppColors.black,
+                                                  ifTruePoppinsElseLato: false),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/bull.png",
+                                                  height:
+                                                      screenSize.width >= 481
+                                                          ? 8.sp
+                                                          : 12,
+                                                  color: AppColors.black,
+                                                ),
+                                                CustomTextComponent(
+                                                    content: "Sexo: ",
                                                     size:
                                                         screenSize.width >= 481
-                                                            ? 5.sp
+                                                            ? 7.sp
                                                             : 8.57,
-                                                    color: AppColors.background,
+                                                    color: AppColors.black,
                                                     ifTruePoppinsElseLato:
                                                         false),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  top: 2,
+                                                  bottom: 4),
+                                              child: CustomTextComponent(
+                                                  content: "Macho",
+                                                  size: screenSize.width >= 481
+                                                      ? 7.sp
+                                                      : 8.57,
+                                                  color: AppColors.black,
+                                                  ifTruePoppinsElseLato: false),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 6),
-                                      child: Container(
-                                        height:
-                                            screenSize.width >= 481 ? 180 : 100,
-                                        width: screenSize.width >= 481 ? 4 : 2,
-                                        color: AppColors.inputFillColor,
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6),
+                                    child: Container(
+                                      height:
+                                          screenSize.width >= 481 ? 180 : 100,
+                                      width: screenSize.width >= 481 ? 4 : 2,
+                                      color: AppColors.inputFillColor,
                                     ),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.calendar_month,
-                                                    size: 12,
-                                                  ),
-                                                  CustomTextComponent(
-                                                      content: "Idade: ",
-                                                      size: screenSize.width >=
-                                                              481
-                                                          ? 5.sp
-                                                          : 8.57,
-                                                      color: AppColors.black,
-                                                      ifTruePoppinsElseLato:
-                                                          false),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 12.0,
-                                                    top: 2,
-                                                    bottom: 4),
-                                                child: CustomTextComponent(
-                                                    content: "20 anos",
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.calendar_month,
+                                                  size: screenSize.width >= 481
+                                                      ? 8.sp
+                                                      : 12,
+                                                  color: AppColors.black,
+                                                ),
+                                                CustomTextComponent(
+                                                    content: "Idade: ",
                                                     size:
                                                         screenSize.width >= 481
-                                                            ? 5.sp
+                                                            ? 7.sp
                                                             : 8.57,
-                                                    color: AppColors.background,
+                                                    color: AppColors.black,
                                                     ifTruePoppinsElseLato:
                                                         false),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.filter_alt,
-                                                    size: 12,
-                                                  ),
-                                                  CustomTextComponent(
-                                                      content: "Categoria: ",
-                                                      size: screenSize.width >=
-                                                              481
-                                                          ? 5.sp
-                                                          : 8.57,
-                                                      color: AppColors.black,
-                                                      ifTruePoppinsElseLato:
-                                                          false),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 12.0,
-                                                    top: 2,
-                                                    bottom: 4),
-                                                child: CustomTextComponent(
-                                                    content: "Novilhas",
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  top: 2,
+                                                  bottom: 4),
+                                              child: CustomTextComponent(
+                                                  content: "20 anos",
+                                                  size: screenSize.width >= 481
+                                                      ? 7.sp
+                                                      : 8.57,
+                                                  color: AppColors.black,
+                                                  ifTruePoppinsElseLato: false),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.filter_alt,
+                                                  size: screenSize.width >= 481
+                                                      ? 9.sp
+                                                      : 12,
+                                                  color: AppColors.black,
+                                                ),
+                                                CustomTextComponent(
+                                                    content: "Categoria: ",
                                                     size:
                                                         screenSize.width >= 481
-                                                            ? 5.sp
+                                                            ? 7.sp
                                                             : 8.57,
-                                                    color: AppColors.background,
+                                                    color: AppColors.black,
                                                     ifTruePoppinsElseLato:
                                                         false),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/kg.png",
-                                                    height: 10,
-                                                  ),
-                                                  CustomTextComponent(
-                                                      content: "Peso médio: ",
-                                                      size: screenSize.width >=
-                                                              481
-                                                          ? 5.sp
-                                                          : 8.57,
-                                                      color: AppColors.black,
-                                                      ifTruePoppinsElseLato:
-                                                          false),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 12.0,
-                                                    top: 2,
-                                                    bottom: 4),
-                                                child: CustomTextComponent(
-                                                    content: "650kg",
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  top: 2,
+                                                  bottom: 4),
+                                              child: CustomTextComponent(
+                                                  content: "Novilhas",
+                                                  size: screenSize.width >= 481
+                                                      ? 7.sp
+                                                      : 8.57,
+                                                  color: AppColors.black,
+                                                  ifTruePoppinsElseLato: false),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/kg.png",
+                                                  height:
+                                                      screenSize.width >= 481
+                                                          ? 8.sp
+                                                          : 12,
+                                                  color: AppColors.black,
+                                                ),
+                                                CustomTextComponent(
+                                                    content: "Peso médio: ",
                                                     size:
                                                         screenSize.width >= 481
-                                                            ? 5.sp
+                                                            ? 7.sp
                                                             : 8.57,
-                                                    color: AppColors.background,
+                                                    color: AppColors.black,
                                                     ifTruePoppinsElseLato:
                                                         false),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12.0,
+                                                  top: 2,
+                                                  bottom: 4),
+                                              child: CustomTextComponent(
+                                                  content: "650kg",
+                                                  size: screenSize.width >= 481
+                                                      ? 7.sp
+                                                      : 8.57,
+                                                  color: AppColors.black,
+                                                  ifTruePoppinsElseLato: false),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                )),
-                          ),
-                        ],
-                      ),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ],
                     ),
                   )
                 ],

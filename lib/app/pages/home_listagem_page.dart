@@ -6,6 +6,7 @@ import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/drawer_component.dart';
 import 'package:ln_app/app/components/live_card_component.dart';
+import 'package:ln_app/app/pages/leilao_card_info_page.dart';
 import 'package:ln_app/app/pages/leilao_detalhe_page.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 import 'package:sizer/sizer.dart';
@@ -62,10 +63,17 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
                   centeredTitle: "10 FEV.2023 às 19:00",
                   bottomTitle: "LEILÃO VIRTUAL GADO DE CORTE - LOTE 175"),
             ),
-            const BatchImage(
-                amount: 68,
-                batchName: "LOTE 303",
-                imagePath: "assets/images/gados.png"),
+            GestureDetector(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LeilaoCardInfoPage(),
+                  )),
+              child: const BatchImage(
+                  amount: 68,
+                  batchName: "LOTE 303",
+                  imagePath: "assets/images/gados.png"),
+            ),
             const BatchImage(
                 amount: 68,
                 batchName: "LOTE 175",

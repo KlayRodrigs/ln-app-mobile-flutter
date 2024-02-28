@@ -3,9 +3,18 @@ import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 import 'package:sizer/sizer.dart';
 
+// ignore: must_be_immutable
 class CardDescriptionComponent extends StatelessWidget {
+  Color cor;
+  final double borderRadius;
+  final String titulo;
   final String description;
-  const CardDescriptionComponent({super.key, required this.description});
+  CardDescriptionComponent(
+      {super.key,
+      required this.description,
+      this.cor = AppColors.white,
+      required this.titulo,
+      required this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +26,8 @@ class CardDescriptionComponent extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         width: screenSize.width >= 481 ? 400 : 280.8,
         decoration: BoxDecoration(
-            color: AppColors.black, borderRadius: BorderRadius.circular(7.2)),
+            color: AppColors.black,
+            borderRadius: BorderRadius.circular(borderRadius)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,12 +36,12 @@ class CardDescriptionComponent extends StatelessWidget {
                 Icon(
                   Icons.description_outlined,
                   color: Colors.white,
-                  size: screenSize.width >= 481 ? 20 : 14,
+                  size: screenSize.width >= 481 ? 7.sp : 14,
                 ),
                 CustomTextComponent(
-                    content: "Descrição:",
-                    size: screenSize.width >= 481 ? 20 : 14,
-                    color: AppColors.white,
+                    content: titulo,
+                    size: screenSize.width >= 481 ? 7.sp : 14,
+                    color: cor,
                     ifTruePoppinsElseLato: false),
               ],
             ),
@@ -40,7 +50,7 @@ class CardDescriptionComponent extends StatelessWidget {
             ),
             CustomTextComponent(
                 content: description,
-                size: screenSize.width >= 481 ? 5.sp : 12,
+                size: screenSize.width >= 481 ? 6.sp : 12,
                 color: AppColors.white,
                 alignment: TextAlign.justify,
                 ifTruePoppinsElseLato: false)

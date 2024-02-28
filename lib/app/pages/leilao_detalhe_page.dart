@@ -50,7 +50,9 @@ class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
                   imagePath: "assets/images/banner-1.png",
                   centeredTitle: "10 FEV.2023 às 19:00",
                   bottomTitle: "LEILÃO VIRTUAL GADO DE CORTE - LOTE 175"),
-              const CardDescriptionComponent(
+              CardDescriptionComponent(
+                borderRadius: 7.2,
+                titulo: "Descrição:",
                 description:
                     "Novilhas de 24 a 26 meses, 400 a 450kgs, Criadoro TZN",
               ),
@@ -59,7 +61,7 @@ class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
               ),
               Container(
                 padding: const EdgeInsets.all(20),
-                width: screenSize.width >= 481 ? null : 280.8,
+                width: screenSize.width >= 481 ? 400 : 280.8,
                 decoration: BoxDecoration(
                     color: AppColors.black,
                     borderRadius: BorderRadius.circular(7.2)),
@@ -89,7 +91,7 @@ class _DetalheLeilaoPageState extends State<DetalheLeilaoPage> {
                       colorContent: AppColors.white,
                       ifTruePoppinsElseLato: false,
                       size: 14,
-                    )
+                    ),
                   ],
                 ),
               ),

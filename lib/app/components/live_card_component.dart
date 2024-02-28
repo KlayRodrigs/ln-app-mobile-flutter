@@ -88,107 +88,112 @@ class _LiveCardComponentState extends State<LiveCardComponent>
                       height: screenSize.width >= 481 ? 80.sp : 148.23,
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 4.0, bottom: 4),
-                        child: CustomTextComponent(
-                          content: "LEILÃO GADO CORTE 174",
-                          size: screenSize.width >= 481 ? 6.sp : 12,
-                          color: AppColors.black,
-                          ifTruePoppinsElseLato: true,
-                          weight: FontWeight.w700,
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: screenSize.width >= 481 ? 30.0 : 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0, bottom: 4),
+                          child: CustomTextComponent(
+                            content: "LEILÃO GADO CORTE 174",
+                            size: screenSize.width >= 481 ? 6.sp : 12,
+                            color: AppColors.black,
+                            ifTruePoppinsElseLato: true,
+                            weight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              color: AppColors.subTexts,
-                              size: screenSize.width >= 481 ? 8.sp : 20,
-                            ),
-                            CustomTextComponent(
-                              content: "Belo Horizonte - MG",
-                              size: screenSize.width >= 481 ? 5.sp : 10.3,
-                              color: AppColors.subTexts,
-                              ifTruePoppinsElseLato: true,
-                              weight: FontWeight.w400,
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 4.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                color: AppColors.subTexts,
+                                size: screenSize.width >= 481 ? 8.sp : 20,
+                              ),
+                              CustomTextComponent(
+                                content: "Belo Horizonte - MG",
+                                size: screenSize.width >= 481 ? 5.sp : 10.3,
+                                color: AppColors.subTexts,
+                                ifTruePoppinsElseLato: true,
+                                weight: FontWeight.w400,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 2.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.access_time_sharp,
-                              color: AppColors.subTexts,
-                              size: screenSize.width >= 481 ? 8.sp : 20,
-                            ),
-                            CustomTextComponent(
-                              content: " 17:00 (horário de Brasília)",
-                              size: screenSize.width >= 481 ? 5.sp : 10.3,
-                              color: AppColors.subTexts,
-                              ifTruePoppinsElseLato: true,
-                              weight: FontWeight.w400,
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 2.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.access_time_sharp,
+                                color: AppColors.subTexts,
+                                size: screenSize.width >= 481 ? 8.sp : 20,
+                              ),
+                              CustomTextComponent(
+                                content: " 17:00 (horário de Brasília)",
+                                size: screenSize.width >= 481 ? 5.sp : 10.3,
+                                color: AppColors.subTexts,
+                                ifTruePoppinsElseLato: true,
+                                weight: FontWeight.w400,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: CustomTextComponent(
-                          content: "Clique e assista esse leilão agora!",
-                          size: screenSize.width >= 481 ? 4.sp : 7.92,
-                          color: AppColors.subTexts,
-                          ifTruePoppinsElseLato: true,
-                          weight: FontWeight.w300,
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: CustomTextComponent(
+                            content: "Clique e assista esse leilão agora!",
+                            size: screenSize.width >= 481 ? 4.sp : 7.92,
+                            color: AppColors.subTexts,
+                            ifTruePoppinsElseLato: true,
+                            weight: FontWeight.w300,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 14.0.sp),
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: const MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            color: AppColors.liveRed),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(3.96)))),
-                                fixedSize: MaterialStatePropertyAll(Size(
-                                    screenSize.width >= 481 ? 16.w : 110.93,
-                                    36.98)),
-                                backgroundColor: const MaterialStatePropertyAll(
-                                    AppColors.liveRed)),
-                            onPressed: () {},
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.play_arrow,
-                                  color: AppColors.white,
-                                  size: screenSize.width >= 481 ? 30 : 20,
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: CustomTextComponent(
-                                      content: "Assistir",
-                                      size: screenSize.width >= 481 ? 18 : 14,
-                                      color: AppColors.white,
-                                      ifTruePoppinsElseLato: true),
-                                ),
-                              ],
-                            )),
-                      ),
-                      const Spacer(),
-                    ],
+                        Padding(
+                          padding: EdgeInsets.only(left: 14.0.sp),
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  shape: const MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: AppColors.liveRed),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(3.96)))),
+                                  fixedSize: MaterialStatePropertyAll(Size(
+                                      screenSize.width >= 481 ? 16.w : 110.93,
+                                      36.98)),
+                                  backgroundColor:
+                                      const MaterialStatePropertyAll(
+                                          AppColors.liveRed)),
+                              onPressed: () {},
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.play_arrow,
+                                    color: AppColors.white,
+                                    size: screenSize.width >= 481 ? 30 : 20,
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: CustomTextComponent(
+                                        content: "Assistir",
+                                        size: screenSize.width >= 481 ? 18 : 14,
+                                        color: AppColors.white,
+                                        ifTruePoppinsElseLato: true),
+                                  ),
+                                ],
+                              )),
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
                   )
                 ],
               ),

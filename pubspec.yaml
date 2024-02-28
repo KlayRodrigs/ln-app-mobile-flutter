@@ -17,6 +17,7 @@ dependencies:
   page_transition: "^2.1.0"
   toastification: ^1.2.1
   sizer: ^2.0.15
+  flutter_carousel_widget: ^2.2.0
   
 dev_dependencies:
   flutter_test:
