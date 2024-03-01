@@ -1,7 +1,11 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ln_app/app/components/appbar_component.dart';
 import 'package:ln_app/app/components/big_button_action_component.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
+import 'package:ln_app/app/models/user_model.dart';
+import 'package:ln_app/app/services/dio_api_service.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
 import 'package:ln_app/app/utils/messages_utils.dart';
 import 'package:sizer/sizer.dart';
@@ -14,6 +18,7 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  final DioApiService _apiService = DioApiService();
   bool _value = false;
   bool showPassword = false;
   bool showPasswordConfirmation = false;
@@ -130,7 +135,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 4.0, bottom: 4.0, top: 20.0),
+                            left: 4.0, right: 4.0, top: 20.0),
                         child: CustomTextComponent(
                             ifTruePoppinsElseLato: false,
                             content: "Celular",
@@ -143,7 +148,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           if (value == null) {
                             return "O celular não pode estar em branco";
                           }
-                          if (value.length != 14) {
+                          if (value.length != 15) {
                             return "Celular inválido";
                           }
                           return null;
@@ -152,7 +157,14 @@ class _CadastroPageState extends State<CadastroPage> {
                             fontSize: screenSize.width >= 481 ? 26 : 14,
                             height: screenSize.width >= 481 ? 1 : 0.1),
                         controller: phoneController,
+                        maxLength: 15,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          TelefoneInputFormatter()
+                        ],
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
+                            counterText: "",
                             errorStyle: TextStyle(
                                 fontSize: screenSize.width >= 481 ? 20 : 14),
                             iconColor: AppColors.black,
@@ -372,28 +384,38 @@ class _CadastroPageState extends State<CadastroPage> {
                   borderRadius: 7,
                   fontSize: screenSize.width >= 481 ? 32 : 16,
                   borderColor: AppColors.confirm,
-                  onTap: () {
+                  onTap: () async {
                     if (valida()) {
-                      MessageUtils.message(
-                          context,
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.done,
-                                color: AppColors.inputFillColor,
-                              ),
-                              Expanded(
-                                child: CustomTextComponent(
-                                    content:
-                                        "Seu cadastro foi realizado com sucesso",
-                                    size: 15,
-                                    color: AppColors.white,
-                                    ifTruePoppinsElseLato: true),
-                              ),
-                            ],
-                          ),
-                          AppColors.darkConfirm,
-                          const Duration(seconds: 1));
+                      if (await _apiService.cadastrarUsuario(
+                          context: context,
+                          user: UserModel(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              phone: phoneController.text,
+                              name: nameController.text))) {
+                        MessageUtils.message(
+                            context,
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.done,
+                                  color: AppColors.inputFillColor,
+                                ),
+                                Expanded(
+                                  child: CustomTextComponent(
+                                      content:
+                                          "Seu cadastro foi realizado com sucesso",
+                                      size: screenSize.width >= 481 ? 28 : 15,
+                                      color: AppColors.white,
+                                      ifTruePoppinsElseLato: true),
+                                ),
+                              ],
+                            ),
+                            AppColors.darkConfirm,
+                            const Duration(seconds: 2));
+                        await Future.delayed(const Duration(seconds: 3));
+                        Navigator.pop(context);
+                      }
                     }
                   }),
               const SizedBox(

@@ -5,7 +5,9 @@ import 'package:ln_app/app/pages/cadastro_page.dart';
 import 'package:ln_app/app/components/custom_text_component.dart';
 import 'package:ln_app/app/components/dix_version_footer_component.dart';
 import 'package:ln_app/app/pages/home_listagem_page.dart';
+import 'package:ln_app/app/services/dio_api_service.dart';
 import 'package:ln_app/app/utils/app_colors_utils.dart';
+import 'package:ln_app/app/utils/messages_utils.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,6 +19,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  DioApiService dioClient = DioApiService();
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
@@ -27,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
         context,
         MaterialPageRoute(
           builder: (context) =>
-              pagina.animate().fadeIn(duration: const Duration(seconds: 2)),
+              pagina.animate().fadeIn(duration: const Duration(seconds: 3)),
         ));
   }
 
@@ -192,9 +195,36 @@ class _LoginPageState extends State<LoginPage> {
                               fontSize: screenSize.width >= 481 ? 28 : 20,
                               onTap: () async {
                                 if (validaEmail()) {
-                                  await Future.delayed(
-                                      const Duration(seconds: 1));
-                                  navega(const HomeListagemPage());
+                                  if (await dioClient.permissaoLogin(
+                                      context: context,
+                                      email: emailController.text,
+                                      password: passwordController.text)) {
+                                    MessageUtils.message(
+                                        context,
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.done,
+                                              color: AppColors.inputFillColor,
+                                            ),
+                                            Expanded(
+                                              child: CustomTextComponent(
+                                                  content: "Logando...",
+                                                  size: screenSize.width >= 481
+                                                      ? 28
+                                                      : 15,
+                                                  color: AppColors.white,
+                                                  ifTruePoppinsElseLato: true),
+                                            ),
+                                          ],
+                                        ),
+                                        AppColors.darkConfirm,
+                                        const Duration(seconds: 2));
+
+                                    await Future.delayed(
+                                        const Duration(seconds: 2));
+                                    navega(const HomeListagemPage());
+                                  }
                                 }
                               },
                               label: "Entrar",

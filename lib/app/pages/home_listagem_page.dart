@@ -19,6 +19,7 @@ class HomeListagemPage extends StatefulWidget {
 }
 
 class _HomeListagemPageState extends State<HomeListagemPage> {
+  bool loop = true;
   int _index = 0;
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _HomeListagemPageState extends State<HomeListagemPage> {
             const SizedBox(
               height: 20,
             ),
-            const LiveCardComponent(),
+            LiveCardComponent(),
             CustomTextComponent(
                 content: "Próximos Leilões",
                 size: screenSize.width >= 481 ? 10.sp : 16,

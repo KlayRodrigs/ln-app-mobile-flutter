@@ -12,9 +12,5 @@ class MessageUtils {
       duration: duration,
       showCloseIcon: true,
     ));
-
-    await Future.delayed(duration + duration).then((value) {
-      Navigator.pop(context, AnimatedIcons.home_menu);
-    });
   }
 }
