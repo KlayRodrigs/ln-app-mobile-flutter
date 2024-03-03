@@ -184,7 +184,8 @@ class _LiveCardComponentState extends State<LiveCardComponent>
                                     flex: 2,
                                     child: CustomTextComponent(
                                         content: "Assistir",
-                                        size: screenSize.width >= 481 ? 18 : 14,
+                                        size:
+                                            screenSize.width >= 481 ? 18 : 9.sp,
                                         color: AppColors.white,
                                         ifTruePoppinsElseLato: true),
                                   ),

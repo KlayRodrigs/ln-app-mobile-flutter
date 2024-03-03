@@ -394,6 +394,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               phone: phoneController.text,
                               name: nameController.text))) {
                         MessageUtils.message(
+                            // ignore: use_build_context_synchronously
                             context,
                             Row(
                               children: [
@@ -414,6 +415,7 @@ class _CadastroPageState extends State<CadastroPage> {
                             AppColors.darkConfirm,
                             const Duration(seconds: 2));
                         await Future.delayed(const Duration(seconds: 3));
+                        // ignore: use_build_context_synchronously
                         Navigator.pop(context);
                       }
                     }

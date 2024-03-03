@@ -200,6 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                                       email: emailController.text,
                                       password: passwordController.text)) {
                                     MessageUtils.message(
+                                        // ignore: use_build_context_synchronously
                                         context,
                                         Row(
                                           children: [
@@ -209,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                             Expanded(
                                               child: CustomTextComponent(
-                                                  content: "Logando...",
+                                                  content: "Entrando...",
                                                   size: screenSize.width >= 481
                                                       ? 28
                                                       : 15,
